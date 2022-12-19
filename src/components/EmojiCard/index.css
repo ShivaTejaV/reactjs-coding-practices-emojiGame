@@ -1,0 +1,19 @@
+/* Write your code here. */
+.listItem {
+  background-blend-mode: lighten;
+  margin: 1vw;
+}
+
+.emojiButton {
+  background-color: #ffffff33;
+  border-radius: 2em;
+  padding: 2vw;
+  border: solid 1px #ffffff;
+  padding: 2vw;
+}
+
+.image {
+  width: 6vw;
+  height: 6vw;
+  margin: 1vw;
+}
