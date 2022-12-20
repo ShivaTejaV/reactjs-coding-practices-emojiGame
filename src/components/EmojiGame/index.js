@@ -48,30 +48,50 @@ class EmojiGame extends Component {
     }
   }
 
+  onClickPlayAgain = () => {
+    this.setState({
+      score: 0,
+      topScore: 0,
+      isGameOver: false,
+      selectedList: [],
+    })
+  }
+
+  getShuffledEmojisList = () => {
+    const {emojisList} = this.props
+    return emojisList.sort(() => Math.random() - 0.5)
+  }
+
+  renderEmojisList = () => {
+    const shuffledEmojisList = this.getShuffledEmojisList()
+
+    return (
+      <ul className="emojiListContainer">
+        {shuffledEmojisList.map(emojiObject => (
+          <EmojiCard
+            key={emojiObject.id}
+            emojiDetails={emojiObject}
+            onClickEmoji={this.onClickEmoji}
+          />
+        ))}
+      </ul>
+    )
+  }
+
   render() {
     const {score, topScore, isGameOver} = this.state
-    const shuffledEmojisList = () => {
-      const {emojisList} = this.props
-      return emojisList.sort(() => Math.random() - 0.5)
-    }
-    const updatedEmojiList = shuffledEmojisList()
     return (
       <div className="bg">
-        <NavBar score={score} topScore={topScore} />
+        <NavBar score={score} topScore={topScore} isGameOver={isGameOver} />
         <div className="bottomContainer">
-          {!isGameOver && (
-            <ul className="emojiListContainer">
-              {updatedEmojiList.map(each => (
-                <EmojiCard
-                  emojiDetails={each}
-                  onClickEmoji={this.onClickEmoji}
-                  key={each.id}
-                />
-              ))}
-            </ul>
-          )}
+          {!isGameOver && this.renderEmojisList()}
 
-          {isGameOver && <WinOrLoseCard score={score} />}
+          {isGameOver && (
+            <WinOrLoseCard
+              score={score}
+              onClickPlayAgain={this.onClickPlayAgain}
+            />
+          )}
         </div>
       </div>
     )

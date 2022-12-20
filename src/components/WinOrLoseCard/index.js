@@ -2,7 +2,7 @@
 import './index.css'
 
 const WinOrLooseCard = props => {
-  const {score} = props
+  const {score, onClickPlayAgain} = props
   const winImage = 'https://assets.ccbp.in/frontend/react-js/won-game-img.png'
   const looseImage =
     'https://assets.ccbp.in/frontend/react-js/lose-game-img.png'
@@ -23,11 +23,15 @@ const WinOrLooseCard = props => {
         <h1 className="result">{result}</h1>
         <p className="score1">score</p>
         <p className="score2">{score}/12</p>
-        <button className="playAgainButton" type="button">
+        <button
+          className="playAgainButton"
+          type="button"
+          onClick={onClickPlayAgain}
+        >
           Play Again
         </button>
       </div>
-      <img className="resultImage" src={imageUrl} />
+      <img className="resultImage" src={imageUrl} alt="results" />
     </div>
   )
 }

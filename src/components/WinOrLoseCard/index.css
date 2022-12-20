@@ -36,6 +36,7 @@
   height: 3em;
   width: 8em;
   border: none 1em;
+  cursor: pointer;
 }
 
 .result {
